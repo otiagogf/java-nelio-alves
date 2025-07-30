@@ -39,3 +39,6 @@ public class ex_niv06 {
         sc.close();
     }
 }
+
+
+
