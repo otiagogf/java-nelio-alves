@@ -1,44 +1,115 @@
 ## Vetores
 
-### Vetor ou Array, é uma estrutura de dados que utilizamos para armazenar uma coleção do mesmo tipo. Cada elemento é acessado por meio de um índice, começando em zero. Arrays em Java são objetos e possuem tamanho fixo após a criação.
-#### Características
-* Coleção de elementos: Um array contém múltiplos elementos do mesmo tipo de dados. 
-* Tamanho fixo: O tamanho de um array é definido na criação e não pode ser alterado posteriormente. 
-* Acesso por índice: Cada elemento é acessado por meio de um índice inteiro, começando em zero. 
-* Alocação dinâmica: Arrays são alocados dinamicamente na memória. 
-* Tipos de dados: Podem armazenar tipos primitivos (como int, double, char) ou objetos de classes. 
+* Em programação, "vetor" é o nome dado a arranjos unidimensionais
+* Arranjo (array) é uma estrutura de dados
+  * Homogênea (dados do mesmo tipo)
+  * Ordenada (elementos acessados por meio de posições)
+  * Alocada de uma vez só, em um bloco contíguo de memória
 
-#### Declaração e inicialização
+* Vantagens
+  * Acesso imediato aos elementos pela sua posição
+* Desvantagens
+  * Tamanho fixo
+  * Dificuldade para se realizar inserções e deleções
+
+## Exemplo 1
+
+### Fazer um programa para ler um número inteiro N e a altura de N pessoas. Armazene as N alturas em um vetor. Em seguida, mostrar a altura média dessas pessoas.
 ```java
-int[] numeros = new int[5]; // Array de inteiros com 5 posições
-String[] nomes = {"Maria", "João", "Pedro"}; // Array de strings com 3 elementos
+package application;
+import java.util.Locale;
+import java.util.Scanner;
+    public class Program {
+        public static void main(String[] args) {
+        Locale.setDefault(Locale.US);
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        double[] vect = new double[n];
+        
+        for (int i=0; i<n; i++) {
+        vect[i] = sc.nextDouble();
+        }
+        
+        double sum = 0.0;
+        for (int i=0; i<n; i++) {
+        sum += vect[i];
+        }
+        
+        double avg = sum / n;
+        System.out.printf("AVERAGE HEIGHT: %.2f%n", avg);
+        sc.close();
+    }
+}
 ```
-#### Acesso aos elementos
-* Para acessar um elemento específico, utilize o índice de colchetes:
+![vetor-exemplo-memoria.png](../images-example/vetor-exemplo-memoria.png)
+
+
+## Exemplo 2
+
+### Fazer um programa para ler um número inteiro N e os dados (nome e preço) de N Produtos. Armazene os N produtos em um vetor. Em seguida, mostrar o preço médio dos produtos.
 ```java
-int primeiroNumero = numeros[0]; // Acessa o primeiro elemento (índice 0)
-String segundoNome = nomes[1]; // Acessa o segundo elemento (índice 1)
+package section10exercises;
+import java.util.Locale;
+import java.util.Scanner;
+
+public class ExemploVetor2 {
+    public static void main(String[] args) {
+        Locale.setDefault(Locale.US);
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        Product[] vect = new Product[n];
+        
+        for (int i=0; i < vect.length; i++) {
+            sc.nextLine();
+            String name = sc.nextLine();
+            double price = sc.nextDouble();
+            vect[i] = new Product(name, price);
+        }
+        
+        double sum = 0.0;
+        for (int i=0; i < vect.length; i++) {
+            sum += vect[i].getPrice();
+        }
+        
+        double avg = sum / vect.length;
+        System.out.printf("AVERAGE PRICE = %.2f%n", avg);
+        
+        sc.close();
+    }
+}
 ```
-#### Operações comuns
-* Atribuição: Atribuir um valor a um elemento do array:
-  ```java
-  //numeros[2] = 10; // Atribui o valor 10 à terceira posição do array
-    ```
-* Iteração: Percorrer todos os elementos do array usando loops (for, while, for-each): 
-  ```java
-  /*for (int i = 0; i < numeros.length; i++) {
-    System.out.println(numeros[i]);
-  ```
-* Tamanho: Obter o número de elementos:
-  ```java
-    //numeros[2] = 10; // Atribui o valor 10 à terceira posição do array
-    ```
-* Cópia: Criar uma cópia do array: 
-  ```java
-   String[] nomesCopia = Arrays.copyOf(nomes, nomes.length); //Copia o array nomes para nomesCopia
-  ```
-* Clonagem: Criar uma cópia do array usando o método clone(): 
-  ```java
-   String[] nomesClone = nomes.clone(); // Cria uma cópia do array nomes
-  ```
-  
+
+```java
+public class Produto_ex_v2 {
+    private String name;
+    private double price;
+
+    public Produto_ex_v2(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+}
+```
+
+![exemplo2-vetor-memoria.png](../images-example/exemplo2-vetor-memoria.png)
+
+![exemplo2-vetor-memoria-v2.png](../images-example/exemplo2-vetor-memoria-v2.png)
+
